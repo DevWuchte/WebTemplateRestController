@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+<!--        <Property name="LOG_PATTERN">%d{HH:mm:ss.SSS} %-5p %m%n</Property>-->
+        <Property name="LOG_PATTERN">%highlight{%d{HH:mm:ss.SSS} %-5p %m%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}</Property>
+        <Property name="APP_LOG_ROOT">.\tmp\logs</Property>
+    </Properties>
+        
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="false"/>
+        </Console>
+ 
+        <RollingFile name="FILE"
+            fileName="${APP_LOG_ROOT}/log4j-application.log"
+            filePattern="${APP_LOG_ROOT}/log4j-application-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="1" />
+        </RollingFile>
+    </Appenders>
+    
+    <Loggers>
+    	<!-- LEVEL: OFF, FATAL, ERROR, WARN, INFO, DEBUG (-> SQL), TRACE (-> SQL + Bindings), ALL -->
+	    <!-- Log everything in hibernate -->
+	    <Logger name="org.hibernate" level="INFO" additivity="false">
+	      <AppenderRef ref="CONSOLE" />
+	    </Logger>
+		<!-- Log SQL statements -->
+	    <Logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+	      <AppenderRef ref="CONSOLE" />
+	      <!-- <AppenderRef ref="FILE" />-->
+	    </Logger>
+	    <!-- Log JDBC bind parameters -->
+	    <Logger name="org.hibernate.type.descriptor.sql" level="DEBUG" additivity="false">
+	      <AppenderRef ref="CONSOLE" />
+	      <!-- <AppenderRef ref="FILE" />-->
+	    </Logger>
+        <Logger name="org.springframework.boot" level="INFO" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+        </Logger>
+        
+        <Root level="INFO">
+            <AppenderRef ref="CONSOLE" />
+        </Root>
+    </Loggers>
+    
+</Configuration>

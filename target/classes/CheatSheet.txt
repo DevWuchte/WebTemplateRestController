@@ -1,0 +1,125 @@
+Links
+*****
+String.format("TeacherId = %d", teacherId)
+
+<a th:href="@{/mvc/teachers/{teacherId}/schoolClasses(teacherId=${teacher.teacherId})}"
+	th:text="#{message}">
+</a>
+
+<a th:href="@{/mvc/teachers/show/{teacherId}/schoolClasses(teacherId=${teacher.teacherId})}"
+	th:text="#{message}">
+</a>
+
+*** Link als Button ***
+<a class="btn btn-primary btn-sm"
+    th:href="@{/mvc/teachers/show/{teacherId}/schoolClasses(teacherId=${teacher.teacherId})}"
+	th:text="#{message}">
+</a>
+
+
+Bündigkeit (engl: alignment)
+****************************
+Linksbündig:
+
+	Message expression (Labels): <th style="text-align:left" th:text="#{...}"></th>
+	Variable expression: <td style="text-align:left" th:text="${...}"></td>
+
+Zentriert: 'left' durch 'center' ersetzen
+Rechtsbündig: 'left' durch 'right' ersetzen
+
+
+
+Formatierung
+************
+LocalDateTime: <td th:text="${#temporals.format(variable, 'dd.MM.yyyy HH:mm')}"></td>
+
+Kommazahlen:   <td th:text="${#numbers.formatDecimal(variable, 1, 2)}"></td>
+
+
+
+Dynamisches Ausblenden
+**********************
+Message expression: <td th:if="${teacher == null}" th:text="${schoolClass.teacher}"></td>
+
+Variable expression: <td th:if="${condition}" th:text="#{...}"></td>
+
+
+
+Optimierung
+***********
+@EntityGraph(type = EntityGraph.EntityGraphType.FETCH,
+             attributePaths = {"teacher",
+                               "students",
+                               "students.studentSubjects",
+                               "students.studentSubjects.subject"})
+Optional<SchoolClass> findBySchoolClassId(int schoolClassId);
+
+
+
+Farblich hinterlegen
+********************
+Text: <td th:classappend="${studentSubject.grade == 5} ? 'text-danger' : 'text-success'" th:text="variable"></td>
+
+Hintergrund und Text: <td th:classappend="${studentSubject.grade == 5} ? 'bg-danger text-white': 'bg-success text-white'" th:text="variable"></td>
+
+
+
+Fragments
+*********
+Defintion (in View.html)
+	<div th:fragment="methodName(parameter)" th:remove="tag">
+		// to do
+	</div>
+
+Aufruf: <div th:replace="fragments/View.html :: methodName(parameter=${parameter})"></div>
+
+
+
+Combobox
+********
+<select class="form-control" th:field="*{teacher}">
+	<option th:each="t:${teachers}"
+			th:value="${t.teacherId}"
+			th:text="${t}">
+	</option>
+</select>
+
+
+********
+bei Performanceproblemeen (zu Hause)
+### https://stackoverflow.com/questions/49911057/thymeleaf-select-option-performance-issue
+********
+<select class="form-control" name="teacher" id="teacher" required>
+    <option value="-1" th:text="#{option.choose}"></option>
+    <option th:each="t: ${teachers}"
+            th:selected="${t.teacherId} == (*{teacher} != null ? *{teacher.teacherId} : -1)"
+            th:value="${t.teacherId}"
+            th:text="${t}">
+    </option>
+</select>
+<td class="alert alert-danger" th:if="${#fields.hasErrors('teacher')}" th:errors="*{teacher}"></td>
+
+
+
+addEdit - Mapping
+*****************
+@GetMapping({"addEdit", "addEdit/{optDepartmentId}"})
+public ModelAndView addEdit(@PathVariable Optional<Integer> optTeacherId)
+
+
+
+save - Mapping
+*****************
+@PostMapping(value = "save")
+public ModelAndView save(@Valid @ModelAttribute Student student,
+                            BindingResult bindingResult)
+
+
+
+Ausgabe allgemeine Fehlermeldung (alte Variante)
+********************************
+<p class="alert alert-danger" th:if="${error!=null}" th:text="${error}"></p>
+
+Ausgabe allgemeine Fehlermeldung (neue Variante)
+********************************
+<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="alert alert-danger" />

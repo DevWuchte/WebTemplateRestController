@@ -1,0 +1,8 @@
+127.0.0.1 2024-04-17 18:26:16.986 "GET /students/1/studentSubjects HTTP/1.1" SC:200 (640 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:27:20.524 "GET /schoolClasses/1 HTTP/1.1" SC:200 (381 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:28:34.962 "POST /schoolClasses HTTP/1.1" SC:400 (65 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:28:57.815 "POST /schoolClasses HTTP/1.1" SC:400 (5 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:29:05.356 "POST /schoolClasses HTTP/1.1" SC:400 (5 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:32:18.678 "GET /schoolClasses/1 HTTP/1.1" SC:200 (79 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:33:29.261 "POST /schoolClasses HTTP/1.1" SC:500 (121 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+127.0.0.1 2024-04-17 18:33:37.537 "POST /schoolClasses HTTP/1.1" SC:200 (51 ms) -> - - 127.0.0.1 - IntelliJ HTTP Client/IntelliJ IDEA 2024.1
