@@ -12,3 +12,5 @@ Dieses Projekt ist ein Backend Spring Boot-Anwendung, das eine MySQL-Datenbank i
 - Java Development Kit (JDK)
 - Spring Boot Framework
 - [Spezielle MySQL Datenbank nötig] (School)
+- **Hinweis:** Bitte beachten Sie, dass dieses Projekt auf eine spezielle Datenbank abgestimmt ist, die in den Model- und Controller-Komponenten und RestAPI verwendet wird. Wenn Sie eine andere Datenbank verwenden möchten, müssen Sie möglicherweise Anpassungen an den entsprechenden Stellen im Code vornehmen.
+
