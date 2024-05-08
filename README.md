@@ -7,3 +7,8 @@ Dieses Projekt ist ein Backend Spring Boot-Anwendung, das eine MySQL-Datenbank i
 - **Datenverwaltung**: Die Anwendung ermöglicht das Speichern, Abrufen, Aktualisieren und Löschen von Daten in der MySQL-Datenbank.
 - **MVC-Präsentation**: Durch die Integration von HTML und dem MVC-Muster wird eine benutzerfreundliche Oberfläche geschaffen, um Daten anzuzeigen und Benutzerinteraktionen zu ermöglichen.
 - **RESTful-API**: Die Anwendung bietet RESTful-API-Schnittstellen für den programmatischen Zugriff auf die Datenbank und die Ausführung von Operationen.
+
+## Anforderungen
+- Java Development Kit (JDK)
+- Spring Boot Framework
+- [Spezielle MySQL Datenbank nötig] (School)
